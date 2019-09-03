@@ -4,3 +4,5 @@
 [com.wenxia.snippet.tree.TreeNodeUtils.java](src/main/java/com/wenxia/snippet/tree/TreeNodeUtils.java)
 2. 省市联动，从json文件获取数据转成JsonArray  
 [com.wenxia.snippet.city.ProvinceCity.java](src/main/java/com/wenxia/snippet/city/ProvinceCity.java)
+3. 常用的MD5工具类  
+[com.wenxia.snippet.md5.Md5Utils.java](src/main/java/com/wenxia/snippet/md5/Md5Utils.java)
