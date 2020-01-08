@@ -6,3 +6,5 @@
 [com.wenxia.snippet.city.ProvinceCity.java](src/main/java/com/wenxia/snippet/city/ProvinceCity.java)
 3. 常用的MD5工具类  
 [com.wenxia.snippet.md5.Md5Utils.java](src/main/java/com/wenxia/snippet/md5/Md5Utils.java)
+4. 雪花ID算法，Snowflake，分布式自增ID应用  
+[com.wenxia.snippet.snowflake.SnowflakeIdWorker.java](src/main/java/com/wenxia/snippet/snowflake/SnowflakeIdWorker.java)
