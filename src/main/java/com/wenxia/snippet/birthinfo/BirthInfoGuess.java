@@ -483,9 +483,9 @@ public class BirthInfoGuess {
         }
     }
 
-    private static String generateWuxingDesc(String[] wuXing) {
-        StringBuilder desc = new StringBuilder(String.join("", wuXing));
-        List<String> wuxingList = Arrays.asList(wuXing);
+    private static String generateWuxingDesc(String[] wuxing) {
+        StringBuilder desc = new StringBuilder(String.join("", wuxing));
+        List<String> wuxingList = Arrays.asList(wuxing);
         if (!wuxingList.contains("金")) {
             desc.append("，五行缺金");
         } else if (!wuxingList.contains("木")) {
