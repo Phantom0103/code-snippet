@@ -8,3 +8,5 @@
 [com.wenxia.snippet.md5.Md5Utils.java](src/main/java/com/wenxia/snippet/md5/Md5Utils.java)
 4. SnowflakeId雪花ID算法，分布式自增ID应用  
 [com.wenxia.snippet.snowflake.SnowflakeIdWorker.java](src/main/java/com/wenxia/snippet/snowflake/SnowflakeIdWorker.java)
+5. 通过阳历生日计算星座，阴历生日，生辰八字，生肖五行  
+[com.wenxia.snippet.birthinfo.BirthInfoGuess.java](src/main/java/com/wenxia/snippet/birthinfo/BirthInfoGuess.java)
