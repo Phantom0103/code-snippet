@@ -8,6 +8,7 @@ package com.wenxia.snippet.bingfa;
 public class VolatileCase {
 
     private static volatile boolean notice = false;
+    private static volatile int number = 0;
 
     public static void main(String[] args) throws Exception {
         Thread t1 = new Thread(() -> {
@@ -36,5 +37,21 @@ public class VolatileCase {
 
         t1.start();
         t2.start();
+
+        // volatile 不保证原子性
+        for (int i = 0; i < 100; i++) {
+            new Thread(() -> {
+                for (int j = 0; j < 10000; j++) {
+                    number++;
+                }
+            }).start();
+        }
+
+        while (Thread.activeCount() > 2) {
+            // 只要有存活的线程，主线程一直让步
+            Thread.yield();
+        }
+
+        System.out.println("number: " + number);
     }
 }
