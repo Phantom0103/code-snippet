@@ -9,6 +9,10 @@ import java.security.MessageDigest;
  */
 public class Md5Utils {
 
+    private Md5Utils() {
+
+    }
+
     /**
      * 生成32位md5
      *

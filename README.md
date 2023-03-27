@@ -10,3 +10,5 @@
 [com.wenxia.snippet.snowflake.SnowflakeIdWorker.java](src/main/java/com/wenxia/snippet/snowflake/SnowflakeIdWorker.java)
 5. 通过阳历生日计算星座，阴历生日，生辰八字，生肖五行  
 [com.wenxia.snippet.birthinfo.BirthInfoGuess.java](src/main/java/com/wenxia/snippet/birthinfo/BirthInfoGuess.java)
+6. AES加密  
+[com.wenxia.snippet.aes.AesEncryptUtils.java](src/main/java/com/wenxia/snippet/aes/AesEncryptUtils.java)
