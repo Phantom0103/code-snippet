@@ -11,3 +11,5 @@
 [com.wenxia.snippet.birthinfo.BirthInfoGuess.java](src/main/java/com/wenxia/snippet/birthinfo/BirthInfoGuess.java)
 6. AES加密  
 [com.wenxia.snippet.aes.AesEncryptUtils.java](src/main/java/com/wenxia/snippet/aes/AesEncryptUtils.java)
+7. Java调用Python，比如调用OpenAI的tiktoken来统计prompt所消耗的tokens  
+[com.wenxia.snippet.callpy.TokenCounter.java](src/main/java/com/wenxia/snippet/callpy/TokenCounter.java)
