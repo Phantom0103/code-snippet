@@ -1,9 +1,9 @@
 package com.wenxia.snippet.tree;
 
-import com.wenxia.snippet.tree.model.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.wenxia.snippet.tree.model.TreeNode;
 
 /**
  * @Author zhouw
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class TreeNodeUtils {
 
-    private List<TreeNode> treeNodeList;
+    private final List<TreeNode> treeNodeList;
 
     public TreeNodeUtils(List<TreeNode> treeNodeList) {
         this.treeNodeList = treeNodeList;
@@ -26,12 +26,18 @@ public class TreeNodeUtils {
      */
     public TreeNode generateTree(int id) {
         TreeNode root = getById(id);
+        if (root == null) {
+            return null;
+        }
+
         List<TreeNode> childNodes = getChildrenById(id);
-        if (childNodes != null && childNodes.size() > 0) {
+        if (childNodes.size() > 0) {
             for (TreeNode node : childNodes) {
                 // 将子节点作为根，查找子节点的子节点
                 TreeNode childRoot = generateTree(node.getId());
-                root.getChildNodes().add(childRoot);
+                if (childRoot != null) {
+                    root.getChildNodes().add(childRoot);
+                }
             }
         }
 
@@ -60,7 +66,7 @@ public class TreeNodeUtils {
      * @param id
      * @return
      */
-    private List getChildrenById(int id) {
+    private List<TreeNode> getChildrenById(int id) {
         List<TreeNode> childNodes = new ArrayList<>();
         for (TreeNode node : treeNodeList) {
             if (node.getParentId() != null && node.getParentId() == id) {

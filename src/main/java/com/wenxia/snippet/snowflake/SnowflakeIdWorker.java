@@ -10,36 +10,36 @@ public class SnowflakeIdWorker {
     /**
      * 开始时间：2020-01-01 00:00:00
      */
-    private final long beginTs = 1577808000000L;
+    private static final long BEGIN_TS = 1577808000000L;
 
-    private final long workerIdBits = 10;
+    private static final long WORKER_ID_BITS = 10;
 
     /**
      * 2^10 - 1 = 1023
      */
-    private final long maxWorkerId = -1L ^ (-1L << workerIdBits);
+    private static final long MAX_WORKER_ID = ~(-1L << WORKER_ID_BITS);
 
-    private final long sequenceBits = 12;
+    private static final long SEQUENCE_BITS = 12;
 
     /**
      * 2^12 - 1 = 4095
      */
-    private final long maxSequence = -1L ^ (-1L << sequenceBits);
+    private static final long MAX_SEQUENCE = ~(-1L << SEQUENCE_BITS);
 
     /**
      * 时间戳左移22位
      */
-    private final long timestampLeftOffset = workerIdBits + sequenceBits;
+    private static final long TIMESTAMP_LEFT_OFFSET = WORKER_ID_BITS + SEQUENCE_BITS;
 
     /**
      * 业务ID左移12位
      */
-    private final long workerIdLeftOffset = sequenceBits;
+    private static final long WORKER_ID_LEFT_OFFSET = SEQUENCE_BITS;
 
     /**
      * 合并了机器ID和数据标示ID，统称业务ID，10位
      */
-    private long workerId;
+    private final long workerId;
 
     /**
      * 毫秒内序列，12位，2^12 = 4096个数字
@@ -52,8 +52,8 @@ public class SnowflakeIdWorker {
     private long lastTimestamp = -1L;
 
     public SnowflakeIdWorker(long workerId) {
-        if (workerId > maxWorkerId || workerId < 0) {
-            throw new IllegalArgumentException(String.format("WorkerId必须大于或等于0且小于或等于%d", maxWorkerId));
+        if (workerId > MAX_WORKER_ID || workerId < 0) {
+            throw new IllegalArgumentException(String.format("WorkerId必须大于或等于0且小于或等于%d", MAX_WORKER_ID));
         }
 
         this.workerId = workerId;
@@ -68,7 +68,7 @@ public class SnowflakeIdWorker {
         // 同一时间内，则计算序列号
         if (ts == lastTimestamp) {
             // 序列号溢出
-            if (++sequence > maxSequence) {
+            if (++sequence > MAX_SEQUENCE) {
                 ts = tilNextMillis(lastTimestamp);
                 sequence = 0L;
             }
@@ -82,7 +82,7 @@ public class SnowflakeIdWorker {
         // 0 - 00000000 00000000 00000000 00000000 00000000 0 - 00000000 00 - 00000000 0000
         // 左移后，低位补0，进行按位或运算相当于二进制拼接
         // 本来高位还有个0<<63，0与任何数字按位或都是本身，所以写不写效果一样
-        return (ts - beginTs) << timestampLeftOffset | workerId << workerIdLeftOffset | sequence;
+        return (ts - BEGIN_TS) << TIMESTAMP_LEFT_OFFSET | workerId << WORKER_ID_LEFT_OFFSET | sequence;
     }
 
     /**
